@@ -1,0 +1,50 @@
+--- nntpcache-2.4.0b5/src/Makefile.am.orig	Wed Jun  5 21:51:15 2002
++++ nntpcache-2.4.0b5/src/Makefile.am	Wed Jun  5 21:52:09 2002
+@@ -52,6 +52,7 @@
+ 	$(top_srcdir)/confused/confused $<
+ 
+ INCLUDES = \
++	-I.. \
+ 	-I../cf \
+ 	-I../common \
+ 	-I../libproff \
+@@ -60,4 +61,39 @@
+ 	-I../libmmalloc \
+ 	-I../libdbz
+ 
++BUILT_SOURCES = \
++	acc.ext \
++	article.ext \
++	authinfo_ldap.ext \
++	authinfo_passwd.ext \
++	authinfo_pipe.ext \
++	authinfo_radius.ext \
++	authinfo_pam.ext \
++	authinfo.ext \
++	bregex.ext \
++	build_history.ext \
++	date.ext \
++	debug.ext \
++	expire.ext \
++	filter.ext \
++	group.ext \
++	history.ext \
++	http.ext \
++	ihave.ext \
++	ipc.ext \
++	list.ext \
++	lock.ext \
++	log.ext \
++	newgroups.ext \
++	newnews.ext \
++	next.ext \
++	nocem.ext \
++	nmalloc.ext \
++	nntpcache.ext \
++	post.ext \
++	sockets.ext \
++	stats.ext \
++	xover.ext \
++	xpath.ext
++
+ include ../mk/rules.mk
