@@ -2,7 +2,7 @@
 #
 # nntpcache	NNTP caching proxy
 #
-# chkconfig:    345  91 35
+# chkconfig:	345 91 35
 #
 # description:	nntpcache act as internet news proxy. Tries to satsify client
 #		requests using data available locally, asking news server for
@@ -16,9 +16,13 @@
 . /etc/sysconfig/network
 
 # Check that networking is up.
-if is_no "${NETWORKING}"; then
-	msg_Network_Down "NNTP Cache"
-	exit 1
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network ]; then
+		msg_Network_Down "NNTP Cache"
+		exit 1
+	fi
+else
+	exit 0
 fi
 
 # See how we were called.
@@ -31,12 +35,12 @@ case "$1" in
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/nntpcache
 	else
-		msg_Already_Running "NNTP Cache"
+		msg_already_running "NNTP Cache"
 		exit 1
 	fi
-        ;;
+	;;
   stop)
-        # Stop daemons.
+	# Stop daemons.
 	if [ -f /var/lock/subsys/nntpcache ]; then
 		for pidfile in /var/cache/nntp/nntpcache.pid*; do
 			pid=`cat "$pidfile"`
@@ -54,14 +58,14 @@ case "$1" in
 		done
 		rm -f /var/lock/subsys/nntpcache >/dev/null 2>&1
 	else
-		msg_Not_Running "NNTP Cache"
+		msg_not_running "NNTP Cache"
 		exit 1
 	fi	
-        ;;
+	;;
   restart)
-        $0 stop
+	$0 stop
 	$0 start
-        ;;
+	;;
   reload)
 	if [ -f /var/lock/subsys/nntpcache ]; then
 		#killproc nntpcached -HUP
@@ -73,18 +77,18 @@ case "$1" in
 			ok
 		done
 	else
-		msg_Not_Running "NNTP Cache"
+		msg_not_running "NNTP Cache"
 		exit 1
 	fi
 	;;
   status)
 	status nntpcached
 	exit $?
-        ;;
+	;;
   *)
-        # show "Usage: %s {start|stop|status|restart|reload|force-reload}" $0
-	msg_Usage "$0 {start|stop|status|restart|reload}"
-        exit 1
+	# show "Usage: %s {start|stop|restart|reload|status}"
+	msg_usage "$0 {start|stop|restart|reload|status}"
+	exit 1
 esac
 
 exit $RETVAL
