@@ -104,16 +104,16 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog FAQ HACKING LICENSING README{,.INN}
 %attr(770,root,news) %dir %{_sysconfdir}/%{name}
-%config(noreplace) %attr(640,root,news) %config %{_sysconfdir}/%{name}/nntpcache.config
-%config(noreplace) %attr(640,root,news) %config %{_sysconfdir}/%{name}/nntpcache.servers
-%config(noreplace) %attr(640,root,news) %config %{_sysconfdir}/%{name}/nntpcache.access
-%config(noreplace) %attr(640,root,news) %config %{_sysconfdir}/%{name}/pubring.pgp
-%config(noreplace) %attr(640,root,news) %config %{_sysconfdir}/%{name}/spam.filter
+%attr(640,root,news) %config(noreplace) %{_sysconfdir}/%{name}/nntpcache.config
+%attr(640,root,news) %config(noreplace) %{_sysconfdir}/%{name}/nntpcache.servers
+%attr(640,root,news) %config(noreplace) %{_sysconfdir}/%{name}/nntpcache.access
+%attr(640,root,news) %config(noreplace) %{_sysconfdir}/%{name}/pubring.pgp
+%attr(640,root,news) %config(noreplace) %{_sysconfdir}/%{name}/spam.filter
 %attr(640,root,news) %config %{_sysconfdir}/%{name}/VERSION
-%config(noreplace) %attr(640,root,news) %config %{_sysconfdir}/%{name}/innreport.conf
+%attr(640,root,news) %config(noreplace) %{_sysconfdir}/%{name}/innreport.conf
 %attr(640,root,news) %config %{_sysconfdir}/%{name}/innreport.pl
 %attr(640,root,news) %config %{_sysconfdir}/%{name}/innreport.pm
-%config(noreplace) %attr(640,root,news) %config %{_sysconfdir}/%{name}/newshound.conf-dist
+%attr(640,root,news) %config(noreplace) %{_sysconfdir}/%{name}/newshound.conf-dist
 %attr(750,root,root) %{_sysconfdir}/rc.d/init.d/%{name}
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libexecdir}/*
