@@ -53,10 +53,10 @@ np. slrn, który ¶ci±ga nag³ówki przy ka¿dym wej¶ciu na grupê).
 #cp -f mk/rules.mk{.in,}
 #rm -f missing
 rm -f missing
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
-autoheader
+%{__autoheader}
 CPPFLAGS="-I.. %{rpmcflags}"
 
 %configure
