@@ -74,10 +74,20 @@ mv -f $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/http $RPM_BUILD_ROOT%{_datadir}/%{na
 gzip -9nf AUTHORS COPYING ChangeLog FAQ HACKING LICENSING README{,.INN}
 
 %post
-DESC="NNTP Cache daemon"; %chkconfig_add
+/sbin/chkconfig --add %{name}
+if [ -r /var/lock/subsys/%{name} ]; then
+	/etc/rc.d/init.d/%{name} restart >&2
+else
+	echo "Run \"/etc/rc.d/init.d/%{name} start\" to start NNTP Cache daemons."
+fi
 
 %preun
-%chkconfig_del
+if [ "$1" = "0" ]; then
+	if [ -r /var/lock/subsys/%{name} ]; then
+		/etc/rc.d/init.d/%{name} stop >&2
+	fi
+	/sbin/chkconfig --del %{name}
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
