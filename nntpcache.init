@@ -25,7 +25,7 @@ else
 	exit 0
 fi
 
-
+RETVAL=0
 # See how we were called.
 case "$1" in
   start)
@@ -37,7 +37,6 @@ case "$1" in
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/nntpcache
 	else
 		msg_already_running "NNTP Cache"
-		exit 1
 	fi
 	;;
   stop)
@@ -60,14 +59,14 @@ case "$1" in
 		rm -f /var/lock/subsys/nntpcache >/dev/null 2>&1
 	else
 		msg_not_running "NNTP Cache"
-		exit 1
 	fi	
 	;;
   restart)
 	$0 stop
 	$0 start
+	exit $?
 	;;
-  reload)
+  reload|force-reload)
 	if [ -f /var/lock/subsys/nntpcache ]; then
 		#killproc nntpcached -HUP
 		for pidfile in /var/cache/nntp/nntpcache.pid*; do
@@ -75,11 +74,12 @@ case "$1" in
 			msg_reloading "NNTP Cache (process $pid)"
 			busy
 			kill -HUP $pid
+			[ $? -ne 0 -a $RETVAL -eq 0 ] && RETVAL=7 
 			ok
 		done
 	else
-		msg_not_running "NNTP Cache"
-		exit 1
+		msg_not_running "NNTP Cache" >&2
+		exit 7
 	fi
 	;;
   status)
@@ -87,9 +87,9 @@ case "$1" in
 	exit $?
 	;;
   *)
-	# show "Usage: %s {start|stop|restart|reload|status}"
-	msg_usage "$0 {start|stop|restart|reload|status}"
-	exit 1
+	# show "Usage: %s {start|stop|restart|reload|force-reload|status}"
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
+	exit 3
 esac
 
 exit $RETVAL
