@@ -118,7 +118,7 @@ fi
 %attr(640,root,news) %config %{_sysconfdir}/%{name}/innreport.pl
 %attr(640,root,news) %config %{_sysconfdir}/%{name}/innreport.pm
 %attr(640,root,news) %config(noreplace) %{_sysconfdir}/%{name}/newshound.conf-dist
-%attr(750,root,root) /etc/rc.d/init.d/%{name}
+%attr(754,root,root) /etc/rc.d/init.d/%{name}
 %attr(755,root,root) %{_bindir}/*
 %dir %{_libexecdir}
 %attr(755,root,root) %{_libexecdir}/*
