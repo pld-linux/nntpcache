@@ -20,6 +20,8 @@ PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_libexecdir	/usr/lib/nntpcache
+
 %description
 Install this program if you have slow link to news server and/or many
 users using news and want to save bandwidth. This program will forward
@@ -118,6 +120,7 @@ fi
 %attr(640,root,news) %config(noreplace) %{_sysconfdir}/%{name}/newshound.conf-dist
 %attr(750,root,root) /etc/rc.d/init.d/%{name}
 %attr(755,root,root) %{_bindir}/*
+%dir %{_libexecdir}
 %attr(755,root,root) %{_libexecdir}/*
 %attr(755,root,root) %{_sbindir}/newshound
 %attr(755,root,root) %{_sbindir}/nntpcached
