@@ -6,6 +6,7 @@ Release:	0.3
 License:	Free for non-commercial use
 Group:		Daemons
 Source0:	ftp://ftp.nntpcache.org/pub/nntpcache/%{name}-%{version}.tar.gz
+# Source0-md5:	26f142bf39d76699d2b9620c5940a4dd
 Source1:	%{name}.init
 Patch0:		%{name}-Makefile.patch
 Patch1:		%{name}-config.patch
