@@ -5,8 +5,6 @@ Version:	2.4.0b5
 Release:	1
 License:	Free for non-commercial use
 Group:		Daemons
-Group(de):	Server
-Group(pl):	Serwery
 Source0:	ftp://ftp.nntpcache.org/pub/nntpcache/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Patch0:		%{name}-Makefile.patch
