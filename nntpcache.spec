@@ -95,17 +95,17 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc *.gz
-%attr(750,news,news) %dir %{_sysconfdir}/%{name}
-%attr(640,news,news) %config %{_sysconfdir}/%{name}/nntpcache.config
-%attr(640,news,news) %config %{_sysconfdir}/%{name}/nntpcache.servers
-%attr(640,news,news) %config %{_sysconfdir}/%{name}/nntpcache.access
-%attr(640,news,news) %config %{_sysconfdir}/%{name}/pubring.pgp
-%attr(640,news,news) %config %{_sysconfdir}/%{name}/spam.filter
+%attr(770,root,news) %dir %{_sysconfdir}/%{name}
+%attr(640,root,news) %config %{_sysconfdir}/%{name}/nntpcache.config
+%attr(640,root,news) %config %{_sysconfdir}/%{name}/nntpcache.servers
+%attr(640,root,news) %config %{_sysconfdir}/%{name}/nntpcache.access
+%attr(640,root,news) %config %{_sysconfdir}/%{name}/pubring.pgp
+%attr(640,root,news) %config %{_sysconfdir}/%{name}/spam.filter
 %attr(750,root,root) %{_sysconfdir}/rc.d/init.d/%{name}
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libexecdir}/*
 %attr(755,root,root) %{_sbindir}/newshound
 %attr(755,root,root) %{_sbindir}/nntpcached
 %{_datadir}/%{name}
-%attr(750,news,news) %dir /var/cache/nntp
+%attr(770,root,news) %dir /var/cache/nntp
 %{_mandir}/man8/*
