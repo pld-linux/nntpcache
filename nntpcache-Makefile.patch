@@ -1,7 +1,15 @@
-diff -urN nntpcache-2.4.0b5.orig/cf/Makefile.am nntpcache-2.4.0b5/cf/Makefile.am
---- nntpcache-2.4.0b5.orig/cf/Makefile.am	Tue May 23 16:55:51 2000
-+++ nntpcache-2.4.0b5/cf/Makefile.am	Mon Sep 25 10:29:40 2000
-@@ -23,5 +23,5 @@
+diff -urN nntpcache-3.0.1-orig/cf/Makefile.am nntpcache-3.0.1/cf/Makefile.am
+--- nntpcache-3.0.1-orig/cf/Makefile.am	Tue Sep  3 16:31:52 2002
++++ nntpcache-3.0.1/cf/Makefile.am	Tue Sep  3 16:56:33 2002
+@@ -23,12 +23,12 @@
+ 
+ 
+ install-data-hook:
+-	for f in $(distf); do { cd $(sysconfdir) && (orig=`basename $$f -dist`; test -e $$orig || cp $$f $$orig) ;} done
++	for f in $(distf); do { cd $(DESTDIR)/$(sysconfdir) && (orig=`basename $$f -dist`; test -e $$orig || cp $$f $$orig) ;} done
+ 
+ nntpcache.config-dist : nnconf.cf
+ 	sed -e 's/^ *[a-zA-Z_][a-zA-Z_]* //;s/"//g' <nnconf.cf >$@
  
  # this is ugly, but more flexible than merely redefining INSTALL_DATA
  install-data-local:
@@ -9,9 +17,9 @@ diff -urN nntpcache-2.4.0b5.orig/cf/Makefile.am nntpcache-2.4.0b5/cf/Makefile.am
 -	cd $(localstatedir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(localstate_DATA) && chown @nntpcacheUID@ $(localstate_DATA) && chgrp @nntpcacheGID@ $(localstate_DATA)
 +#	cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
 +#	cd $(localstatedir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(localstate_DATA) && chown @nntpcacheUID@ $(localstate_DATA) && chgrp @nntpcacheGID@ $(localstate_DATA)
-diff -urN nntpcache-2.4.0b5.orig/http/Makefile.am nntpcache-2.4.0b5/http/Makefile.am
---- nntpcache-2.4.0b5.orig/http/Makefile.am	Sun Aug  2 22:30:56 1998
-+++ nntpcache-2.4.0b5/http/Makefile.am	Mon Sep 25 10:29:40 2000
+diff -urN nntpcache-3.0.1-orig/http/Makefile.am nntpcache-3.0.1/http/Makefile.am
+--- nntpcache-3.0.1-orig/http/Makefile.am	Tue Sep  3 16:31:52 2002
++++ nntpcache-3.0.1/http/Makefile.am	Tue Sep  3 16:56:33 2002
 @@ -12,7 +12,7 @@
  ch = . $(httpdata)
  
@@ -21,12 +29,12 @@ diff -urN nntpcache-2.4.0b5.orig/http/Makefile.am nntpcache-2.4.0b5/http/Makefil
 -	cd $(sysconfdir)/http && chown @nntpcacheUID@ $(ch)
 -	cd $(sysconfdir)/http && chgrp @nntpcacheUID@ $(ch)
 +	-mkdir $(DESTDIR)$(sysconfdir)/http
-+	cp $(httpdata) $(DESTDIR)$(sysconfdir)/http
++	cp $(httpdata) $(DESTDIR)/$(sysconfdir)/http
 +#	cd $(sysconfdir)/http && chown @nntpcacheUID@ $(ch)
 +#	cd $(sysconfdir)/http && chgrp @nntpcacheUID@ $(ch)
-diff -urN nntpcache-2.4.0b5.orig/innreport/Makefile.am nntpcache-2.4.0b5/innreport/Makefile.am
---- nntpcache-2.4.0b5.orig/innreport/Makefile.am	Wed Jul 29 17:14:31 1998
-+++ nntpcache-2.4.0b5/innreport/Makefile.am	Mon Sep 25 10:29:40 2000
+diff -urN nntpcache-3.0.1-orig/innreport/Makefile.am nntpcache-3.0.1/innreport/Makefile.am
+--- nntpcache-3.0.1-orig/innreport/Makefile.am	Tue Sep  3 16:31:52 2002
++++ nntpcache-3.0.1/innreport/Makefile.am	Tue Sep  3 16:56:33 2002
 @@ -15,7 +15,7 @@
  
  # the trailing slash is to force symlink transversal
@@ -36,21 +44,122 @@ diff -urN nntpcache-2.4.0b5.orig/innreport/Makefile.am nntpcache-2.4.0b5/innrepo
 -	chown @nntpcacheUID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
 -	chgrp @nntpcacheGID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
 +#	cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
-+	-mkdir $(DESTDIR)$(sysconfdir)/http $(DESTDIR)$(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
++	-mkdir $(DESTDIR)/$(sysconfdir)/http ${DESTDIR}/$(sysconfdir)/http/innreport ${DESTDIR}/$(sysconfdir)/http/innreport/pics
 +#	chown @nntpcacheUID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
 +#	chgrp @nntpcacheGID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
-diff -urN nntpcache-2.4.0b5.orig/pgp/Makefile.am nntpcache-2.4.0b5/pgp/Makefile.am
---- nntpcache-2.4.0b5.orig/pgp/Makefile.am	Wed Aug 19 18:03:22 1998
-+++ nntpcache-2.4.0b5/pgp/Makefile.am	Mon Sep 25 10:29:40 2000
-@@ -10,4 +10,4 @@
+diff -urN nntpcache-3.0.1-orig/pgp/Makefile.am nntpcache-3.0.1/pgp/Makefile.am
+--- nntpcache-3.0.1-orig/pgp/Makefile.am	Tue Sep  3 16:31:52 2002
++++ nntpcache-3.0.1/pgp/Makefile.am	Tue Sep  3 16:56:33 2002
+@@ -10,8 +10,8 @@
  
  # the trailing slash is to force symlink transversal
  install-data-local:
 -	cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
 +#	cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
-diff -urN nntpcache-2.4.0b5.orig/unixauth/Makefile.am nntpcache-2.4.0b5/unixauth/Makefile.am
---- nntpcache-2.4.0b5.orig/unixauth/Makefile.am	Sat Feb 19 12:16:22 2000
-+++ nntpcache-2.4.0b5/unixauth/Makefile.am	Mon Sep 25 10:29:50 2000
+ 
+ install-data-hook:
+-	for f in $(sysconf_DATA); do { cd $(sysconfdir) && (orig=`basename $$f -dist`; test -e $$orig || cp $$f $$orig) ;} done
++	for f in $(sysconf_DATA); do { cd $(DESTDIR)/$(sysconfdir) && (orig=`basename $$f -dist`; test -e $$orig || cp $$f $$orig) ;} done
+ 
+diff -urN nntpcache-3.0.1-orig/src/Makefile.am nntpcache-3.0.1/src/Makefile.am
+--- nntpcache-3.0.1-orig/src/Makefile.am	Tue Sep  3 16:31:52 2002
++++ nntpcache-3.0.1/src/Makefile.am	Tue Sep  3 16:57:10 2002
+@@ -61,7 +61,7 @@
+ 	../libradius/libradius.a
+ 
+ install-exec-hook:
+-	cp nntpcached $(libexecdir)/nntpcached.debug && chmod a+x $(libexecdir)/nntpcached.debug
++	cp nntpcached $(DESTDIR)/$(libexecdir)/nntpcached.debug && chmod a+x $(DESTDIR)/$(libexecdir)/nntpcached.debug
+ 
+ nnconf.c nnconf.h : ../cf/nnconf.cf
+ 	$(top_srcdir)/confused/confused $<
+diff -urN nntpcache-3.0.1-orig/src/Makefile.am~ nntpcache-3.0.1/src/Makefile.am~
+--- nntpcache-3.0.1-orig/src/Makefile.am~	Thu Jan  1 01:00:00 1970
++++ nntpcache-3.0.1/src/Makefile.am~	Tue Sep  3 16:57:10 2002
+@@ -0,0 +1,80 @@
++# $Id$
++# $SmallCopyright: $
++
++sbin_PROGRAMS = nntpcached
++
++# if automake was a little smarter .h and .ext could be
++# extrapolated from the discovered dependencies
++
++nntpcached_exts = \
++        acc.ext article.ext authinfo_ldap.ext authinfo_passwd.ext \
++        authinfo_pipe.ext authinfo_radius.ext authinfo_pam.ext \
++        authinfo.ext bregex.ext build_history.ext date.ext debug.ext \
++        expire.ext filter.ext group.ext history.ext http.ext ihave.ext \
++        ipc.ext list.ext lock.ext log.ext newgroups.ext newnews.ext \
++        next.ext nocem.ext nmalloc.ext nntpcache.ext post.ext \
++        sockets.ext stats.ext xover.ext xpath.h xpath.ext
++
++nntpcached_SOURCES = \
++	$(nntpcached_exts) \
++	nglobal.h assert.h ll.h nntp.h reg.h \
++	acc.c acc.h \
++	article.c article.h \
++	authinfo_ldap.c authinfo_ldap.h \
++	authinfo_passwd.c authinfo_passwd.h \
++	authinfo_pipe.c authinfo_pipe.h \
++	authinfo_radius.c authinfo_radius.h \
++	authinfo_pam.c authinfo_pam.h \
++	authinfo.c authinfo.h \
++	bregex.c bregex.h \
++	build_history.c build_history.h \
++	nnconf.c nnconf.h \
++	date.c date.h \
++	debug.c debug.h \
++	expire.c expire.h \
++	filter.c filter.h \
++	group.c group.h \
++	history.c history.h \
++	http.c http.h \
++	ihave.c ihave.h \
++	ipc.c ipc.h \
++	list.c nlist.h \
++	lock.c lock.h \
++	log.c log.h \
++	newgroups.c newgroups.h \
++	newnews.c newnews.h \
++	next.c next.h \
++	nocem.c nocem.h \
++	nmalloc.c nmalloc.h \
++	nntpcache.c nntpcache.h \
++	post.c post.h \
++	sockets.c sockets.h \
++	stats.c stats.h \
++	xover.c xover.h \
++	xpath.c xpath.h
++
++nntpcached_LDADD = \
++	../libproff/libproff.a \
++	../libconfused/libconfused.a \
++	../libmmalloc/libmmalloc.a \
++	../libdbz/libdbz.a \
++	../libradius/libradius.a
++
++install-exec-hook:
++	cp nntpcached $(libexecdir)/nntpcached.debug && chmod a+x $(libexecdir)/nntpcached.debug
++
++nnconf.c nnconf.h : ../cf/nnconf.cf
++	$(top_srcdir)/confused/confused $<
++
++ext: nnconf.h $(nntpcached_exts)
++
++INCLUDES = \
++	-I../cf \
++	-I../common \
++	-I../libproff \
++	-I../libconfused \
++	-I../mmap \
++	-I../libmmalloc \
++	-I../libdbz
++
++include ../mk/rules.mk
+diff -urN nntpcache-3.0.1-orig/unixauth/Makefile.am nntpcache-3.0.1/unixauth/Makefile.am
+--- nntpcache-3.0.1-orig/unixauth/Makefile.am	Tue Sep  3 16:31:52 2002
++++ nntpcache-3.0.1/unixauth/Makefile.am	Tue Sep  3 16:56:33 2002
 @@ -9,8 +9,8 @@
  	-I../common
  
