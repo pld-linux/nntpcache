@@ -3,15 +3,17 @@ Summary(pl):	Proxy buforuj±cy dostêp do newsów
 Name:		nntpcache
 Version:	2.4.0b5
 Release:	1
+License:	Free for non-commercial use
 Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
-Copyright:	Free for non-commercial use
 Source0:	ftp://ftp.nntpcache.org/pub/nntpcache/%{name}-%{version}.tar.gz
-Source1:	nntpcache.init
+Source1:	%{name}.init
 Patch0:		%{name}-Makefile.patch
-URL:		http://www.nntpcache.org
+URL:		http://www.nntpcache.org/
 BuildRequires:	pam-devel
+Prereq:		rc-scripts
+Prereq:		/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -51,6 +53,9 @@ autoheader;autoconf;automake;
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/var/cache/nntp \
+	   $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d \
+	   $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 %{__make} install DESTDIR="$RPM_BUILD_ROOT"
 
@@ -60,20 +65,15 @@ mv -f $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/nntpcache.access{-dist,}
 mv -f $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/innreport.conf{-dist,}
 mv -f $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/pubring.pgp{-dist,}
 
-install -d $RPM_BUILD_ROOT/var/cache/nntp \
-	   $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d \
-	   $RPM_BUILD_ROOT%{_datadir}/%{name}
-
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/%{name}
 
-mv $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/http $RPM_BUILD_ROOT%{_datadir}/%{name}
+mv -f $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/http $RPM_BUILD_ROOT%{_datadir}/%{name}
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
-	AUTHORS COPYING ChangeLog FAQ HACKING LICENSING README{,.INN}
+gzip -9nf AUTHORS COPYING ChangeLog FAQ HACKING LICENSING README{,.INN}
 
 %post
 /sbin/chkconfig --add %{name}
-if test -r /var/lock/subsys/%{name}; then
+if [ -r /var/lock/subsys/%{name} ]; then
 	/etc/rc.d/init.d/%{name} restart >&2
 else
 	echo "Run \"/etc/rc.d/init.d/%{name} start\" to start NNTP Cache daemons."
@@ -81,7 +81,9 @@ fi
 
 %preun
 if [ "$1" = "0" ]; then
-	/etc/rc.d/init.d/%{name} stop >&2
+	if [ -r /var/lock/subsys/%{name} ]; then
+		/etc/rc.d/init.d/%{name} stop >&2
+	fi
 	/sbin/chkconfig --del %{name}
 fi
 
@@ -90,6 +92,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc *.gz
 %attr(750,news,news) %dir %{_sysconfdir}/%{name}
 %attr(640,news,news) %config %{_sysconfdir}/%{name}/nntpcache.config
 %attr(640,news,news) %config %{_sysconfdir}/%{name}/nntpcache.servers
@@ -104,4 +107,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}
 %attr(750,news,news) %dir /var/cache/nntp
 %{_mandir}/man8/*
-%doc *.gz
