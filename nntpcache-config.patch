@@ -1,6 +1,6 @@
 diff -urN nntpcache-2.4.0b5.orig/cf/nntpcache.config-dist nntpcache-2.4.0b5/cf/nntpcache.config-dist
 --- nntpcache-2.4.0b5.orig/cf/nntpcache.config-dist	Sun Jun 11 22:01:40 2000
-+++ nntpcache-2.4.0b5/cf/nntpcache.config-dist	Wed Oct 18 20:53:09 2000
++++ nntpcache-2.4.0b5/cf/nntpcache.config-dist	Wed Oct 18 22:36:09 2000
 @@ -9,7 +9,7 @@
  
  # location of configuration directory, the config files below 
@@ -41,21 +41,25 @@ diff -urN nntpcache-2.4.0b5.orig/cf/nntpcache.config-dist nntpcache-2.4.0b5/cf/n
  
  # force replacement of already present Organization header in posts.
  # (Suuuure you're from the Julian Assange Memorial Society)
-@@ -374,10 +374,12 @@
+@@ -374,11 +374,13 @@
  # buggy -- nntpcached will just choose whatever works (okay, *maybe* it works:)
  anonMmap yes
  
 -# run expire if there are under this number of inodes in the cache partition
+-minFilesFreePercent 30
+-
+-# expire if there are under this number of blocks free in the cache partition
+-minBlocksFreePercent 30
 +# run expire if number of inodes used in the cache partition exceedes this
 +# number
- minFilesFreePercent 30
- 
--# expire if there are under this number of blocks free in the cache partition
++minFilesFreePercent 95
++
 +# run expire if number of blocks used in the cache partition exceedes this
 +# number
- minBlocksFreePercent 30
++minBlocksFreePercent 95
  
  # don't let the history file grow larger than this (bytes)
+ hisHighWater 60M
 @@ -454,7 +456,7 @@
  httpBindAddr DEFAULT:9119
  
