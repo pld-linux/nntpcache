@@ -35,9 +35,9 @@ your users use news clients which dont do any caching by themselves
 %description -l pl
 Zainstaluj ten program, je¶li masz wolne po³±czenie z serwerem news
 albo/i wielu u¿ytkowników korzystaj±cych z newsów, a chcesz odci±¿yæ
-³±cze. Ten program przekazuje rz±dzania NNTP do podanego serwera a
+³±cze. Ten program przekazuje ¿±dzania NNTP do podanego serwera a
 nastêpnie zwraca odpowiedzi do klienta, jednocze¶nie zachowuj±c je
-lokalnie. Tak wiêc je¶li rz±danie mo¿e zostaæ wype³nione, ca³kowicie
+lokalnie. Tak wiêc je¶li ¿±danie mo¿e zostaæ wype³nione, ca³kowicie
 lub czê¶ciowo, korzystaj±c z danych posiadanych lokalnie, zostan± one
 u¿yte, a z serwera bêd± sprowadzone wy³±cznie informacje niedostêpne
 lokalnie. Mo¿e to zaoszczêdziæ wiele czasu, szczególnie je¶li twoi
