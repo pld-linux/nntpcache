@@ -53,7 +53,7 @@ rm -f missing
 aclocal
 autoconf
 autoheader
-automake -a -c -f
+automake -a -c -f --foreign
 %configure
 
 %{__make}
