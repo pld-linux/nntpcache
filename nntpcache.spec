@@ -8,7 +8,7 @@ Group:		Daemons
 Source0:	ftp://ftp.nntpcache.org/pub/nntpcache/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Patch0:		%{name}-Makefile.patch
-#Patch1:		%{name}-config.patch
+Patch1:		%{name}-config.patch
 #Patch2:		%{name}-am_fix.patch
 #Patch3:		%{name}-ext.patch
 URL:		http://www.nntpcache.org/
@@ -44,7 +44,7 @@ np. slrn, który ¶ci±ga nag³ówki przy ka¿dym wej¶ciu na grupê).
 %prep
 %setup  -q
 %patch0 -p1
-#%patch1 -p1
+%patch1 -p1
 #%patch2 -p1
 #%patch3 -p1
 
