@@ -51,9 +51,9 @@ np. slrn, który ¶ci±ga nag³ówki przy ka¿dym wej¶ciu na grupê).
 cp -f mk/rules.mk{.in,}
 rm -f missing
 aclocal
-autoconf
+%{__autoconf}
 autoheader
-automake -a -c -f --foreign
+%{__automake}
 %configure
 
 %{__make}
