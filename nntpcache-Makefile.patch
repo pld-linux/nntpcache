@@ -7,8 +7,8 @@ diff -urN nntpcache-2.4.0b5.orig/cf/Makefile.am nntpcache-2.4.0b5/cf/Makefile.am
  install-data-local:
 -	cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
 -	cd $(localstatedir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(localstate_DATA) && chown @nntpcacheUID@ $(localstate_DATA) && chgrp @nntpcacheGID@ $(localstate_DATA)
-+	# cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
-+	# cd $(localstatedir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(localstate_DATA) && chown @nntpcacheUID@ $(localstate_DATA) && chgrp @nntpcacheGID@ $(localstate_DATA)
++#	cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
++#	cd $(localstatedir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(localstate_DATA) && chown @nntpcacheUID@ $(localstate_DATA) && chgrp @nntpcacheGID@ $(localstate_DATA)
 diff -urN nntpcache-2.4.0b5.orig/http/Makefile.am nntpcache-2.4.0b5/http/Makefile.am
 --- nntpcache-2.4.0b5.orig/http/Makefile.am	Sun Aug  2 22:30:56 1998
 +++ nntpcache-2.4.0b5/http/Makefile.am	Mon Sep 25 10:29:40 2000
@@ -22,8 +22,8 @@ diff -urN nntpcache-2.4.0b5.orig/http/Makefile.am nntpcache-2.4.0b5/http/Makefil
 -	cd $(sysconfdir)/http && chgrp @nntpcacheUID@ $(ch)
 +	-mkdir $(DESTDIR)$(sysconfdir)/http
 +	cp $(httpdata) $(DESTDIR)$(sysconfdir)/http
-+	# cd $(sysconfdir)/http && chown @nntpcacheUID@ $(ch)
-+	# cd $(sysconfdir)/http && chgrp @nntpcacheUID@ $(ch)
++#	cd $(sysconfdir)/http && chown @nntpcacheUID@ $(ch)
++#	cd $(sysconfdir)/http && chgrp @nntpcacheUID@ $(ch)
 diff -urN nntpcache-2.4.0b5.orig/innreport/Makefile.am nntpcache-2.4.0b5/innreport/Makefile.am
 --- nntpcache-2.4.0b5.orig/innreport/Makefile.am	Wed Jul 29 17:14:31 1998
 +++ nntpcache-2.4.0b5/innreport/Makefile.am	Mon Sep 25 10:29:40 2000
@@ -35,10 +35,10 @@ diff -urN nntpcache-2.4.0b5.orig/innreport/Makefile.am nntpcache-2.4.0b5/innrepo
 -	-mkdir $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
 -	chown @nntpcacheUID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
 -	chgrp @nntpcacheGID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
-+	# cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
++#	cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
 +	-mkdir $(DESTDIR)$(sysconfdir)/http $(DESTDIR)$(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
-+	# chown @nntpcacheUID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
-+	# chgrp @nntpcacheGID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
++#	chown @nntpcacheUID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
++#	chgrp @nntpcacheGID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
 diff -urN nntpcache-2.4.0b5.orig/pgp/Makefile.am nntpcache-2.4.0b5/pgp/Makefile.am
 --- nntpcache-2.4.0b5.orig/pgp/Makefile.am	Wed Aug 19 18:03:22 1998
 +++ nntpcache-2.4.0b5/pgp/Makefile.am	Mon Sep 25 10:29:40 2000
@@ -47,7 +47,7 @@ diff -urN nntpcache-2.4.0b5.orig/pgp/Makefile.am nntpcache-2.4.0b5/pgp/Makefile.
  # the trailing slash is to force symlink transversal
  install-data-local:
 -	cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
-+	# cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
++#	cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
 diff -urN nntpcache-2.4.0b5.orig/unixauth/Makefile.am nntpcache-2.4.0b5/unixauth/Makefile.am
 --- nntpcache-2.4.0b5.orig/unixauth/Makefile.am	Sat Feb 19 12:16:22 2000
 +++ nntpcache-2.4.0b5/unixauth/Makefile.am	Mon Sep 25 10:29:50 2000
@@ -58,8 +58,8 @@ diff -urN nntpcache-2.4.0b5.orig/unixauth/Makefile.am nntpcache-2.4.0b5/unixauth
 -	chown root $(libexecdir)/unixauth
 -	chgrp @nntpcacheGID@ $(libexecdir)/unixauth
 -	chmod u+s,g+x,o-x $(libexecdir)/unixauth 
-+	# chown root $(libexecdir)/unixauth
-+	# chgrp @nntpcacheGID@ $(libexecdir)/unixauth
-+	# chmod u+s,g+x,o-x $(libexecdir)/unixauth 
++#	chown root $(libexecdir)/unixauth
++#	chgrp @nntpcacheGID@ $(libexecdir)/unixauth
++#	chmod u+s,g+x,o-x $(libexecdir)/unixauth 
  
  include ../mk/rules.mk
