@@ -54,7 +54,7 @@ aclocal
 autoconf
 autoheader
 automake -a -c
-%configure 
+%configure
 
 %{__make}
 
