@@ -1,0 +1,76 @@
+diff -urN nntpcache-2.4.0b5.orig/cf/nntpcache.config-dist nntpcache-2.4.0b5/cf/nntpcache.config-dist
+--- nntpcache-2.4.0b5.orig/cf/nntpcache.config-dist	Sun Jun 11 22:01:40 2000
++++ nntpcache-2.4.0b5/cf/nntpcache.config-dist	Wed Oct 18 20:53:09 2000
+@@ -9,7 +9,7 @@
+ 
+ # location of configuration directory, the config files below 
+ # are relative to this path. kinda important
+-configDir /usr/local/etc/nntpcache
++configDir /etc/nntpcache
+ 
+ # location of configuration file (hey, thats me, here, now!)
+ configFile nntpcache.config
+@@ -23,10 +23,10 @@
+ # the root directory for nntpcached all cache files are created under.
+ # if the chroot option is on, this this path is relative to chrootDir
+ # (but still needs a leading slash)
+-cacheDir /usr/local/var/nntpcache
++cacheDir /var/cache/nntp
+ 
+ # who should receive email complaints / reports?
+-adminEmail usenet@foo
++adminEmail root@localhost
+ 
+ # file/directory creation umask
+ umask 022
+@@ -316,7 +316,7 @@
+ # chroot is on, you will need to copy pubring.pgp into /usr/local/var/nntpcache
+ # and change this path to be relative to /usr/local/var/nntpcache (or whatever
+ # you have set cacheDir to be)
+-nocemPGPPATH /usr/local/etc/nntpcache
++nocemPGPPATH /etc/nntpcache
+ 
+ # relay unknown commands to the most recently used news-server.
+ # may bypass group (and other) security features, depending on
+@@ -336,7 +336,7 @@
+ # organization (Yankee spelling)
+ # used when the reader posting doesn't specify one, or
+ # when replaceOrganization is on
+-Organization Ye 'Ol Disorganized NNTPCache groupie
++Organization Happy PLD GNU/Linux users
+ 
+ # force replacement of already present Organization header in posts.
+ # (Suuuure you're from the Julian Assange Memorial Society)
+@@ -374,10 +374,12 @@
+ # buggy -- nntpcached will just choose whatever works (okay, *maybe* it works:)
+ anonMmap yes
+ 
+-# run expire if there are under this number of inodes in the cache partition
++# run expire if number of inodes used in the cache partition exceedes this
++# number
+ minFilesFreePercent 30
+ 
+-# expire if there are under this number of blocks free in the cache partition
++# run expire if number of blocks used in the cache partition exceedes this
++# number
+ minBlocksFreePercent 30
+ 
+ # don't let the history file grow larger than this (bytes)
+@@ -454,7 +456,7 @@
+ httpBindAddr DEFAULT:9119
+ 
+ # If chroot is in effect, this needs to be relative to /usr/local/var/nntpcache
+-httpFiles /usr/local/etc/nntpcache/http
++httpFiles /usr/share/nntpcache/http
+ 
+ # don't refresh list cache unless at least this amount of time has passed
+ # since the last check, despite lower timeout values given anywhere
+@@ -477,7 +479,7 @@
+ minUpdateFailDelay 10m
+ 
+ # period after which a network connection is considered dead
+-networkTimeout 5m
++networkTimeout 1m
+ 
+ # exit if client is idle for longer than this period
+ idleTimeout 25m
