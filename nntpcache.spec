@@ -16,8 +16,8 @@ URL:		http://www.nntpcache.org/
 BuildRequires:	pam-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-Prereq:		rc-scripts
-Prereq:		/sbin/chkconfig
+PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
