@@ -1,0 +1,90 @@
+#!/bin/sh
+#
+# nntpcache	NNTP caching proxy
+#
+# chkconfig:    345  91 35
+#
+# description:	nntpcache act as internet news proxy. Tries to satsify client
+#		requests using data available locally, asking news server for
+#		the rest. Can significantly reduce network traffic.
+
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get network config
+. /etc/sysconfig/network
+
+# Check that networking is up.
+if is_no "${NETWORKING}"; then
+	msg_Network_Down "NNTP Cache"
+	exit 1
+fi
+
+# See how we were called.
+case "$1" in
+  start)
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/nntpcache ]; then
+		msg_starting "NNTP Cache"
+		daemon nntpcached
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/nntpcache
+	else
+		msg_Already_Running "NNTP Cache"
+		exit 1
+	fi
+        ;;
+  stop)
+        # Stop daemons.
+	if [ -f /var/lock/subsys/nntpcache ]; then
+		for pidfile in /var/cache/nntp/nntpcache.pid*; do
+			pid=`cat "$pidfile"`
+			msg_stopping "NNTP Cache (process $pid)"
+			busy
+			kill -TERM $pid
+			usleep 100000
+			if ps h $pid 2>&1 >/dev/null; then
+				sleep 5
+				if ps h $pid 2>&1 >/dev/null; then
+					killall -KILL nntpcached
+				fi
+			fi
+			ok
+		done
+		rm -f /var/lock/subsys/nntpcache >/dev/null 2>&1
+	else
+		msg_Not_Running "NNTP Cache"
+		exit 1
+	fi	
+        ;;
+  restart)
+        $0 stop
+	$0 start
+        ;;
+  reload)
+	if [ -f /var/lock/subsys/nntpcache ]; then
+		#killproc nntpcached -HUP
+		for pidfile in /var/cache/nntp/nntpcache.pid*; do
+			pid=`cat "$pidfile"`
+			msg_reloading "NNTP Cache (process $pid)"
+			busy
+			kill -HUP $pid
+			ok
+		done
+	else
+		msg_Not_Running "NNTP Cache"
+		exit 1
+	fi
+	;;
+  status)
+	status nntpcached
+	exit $?
+        ;;
+  *)
+        # show "Usage: %s {start|stop|status|restart|reload|force-reload}" $0
+	msg_Usage "$0 {start|stop|status|restart|reload}"
+        exit 1
+esac
+
+exit $RETVAL
