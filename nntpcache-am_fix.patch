@@ -1,0 +1,55 @@
+--- ./cf/Makefile.am.org	Sun Oct  7 22:47:35 2001
++++ ./cf/Makefile.am	Sun Oct  7 22:47:50 2001
+@@ -23,5 +23,5 @@
+ 
+ # this is ugly, but more flexible than merely redefining INSTALL_DATA
+ install-data-local:
+-	# cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
+-	# cd $(localstatedir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(localstate_DATA) && chown @nntpcacheUID@ $(localstate_DATA) && chgrp @nntpcacheGID@ $(localstate_DATA)
++	cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
++	cd $(localstatedir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(localstate_DATA) && chown @nntpcacheUID@ $(localstate_DATA) && chgrp @nntpcacheGID@ $(localstate_DATA)
+--- ./http/Makefile.am.org	Sun Oct  7 22:48:01 2001
++++ ./http/Makefile.am	Sun Oct  7 22:48:12 2001
+@@ -14,5 +14,5 @@
+ install-data-local:
+ 	-mkdir $(DESTDIR)$(sysconfdir)/http
+ 	cp $(httpdata) $(DESTDIR)$(sysconfdir)/http
+-	# cd $(sysconfdir)/http && chown @nntpcacheUID@ $(ch)
+-	# cd $(sysconfdir)/http && chgrp @nntpcacheUID@ $(ch)
++	cd $(sysconfdir)/http && chown @nntpcacheUID@ $(ch)
++	cd $(sysconfdir)/http && chgrp @nntpcacheUID@ $(ch)
+--- ./pgp/Makefile.am.org	Sun Oct  7 22:48:43 2001
++++ ./pgp/Makefile.am	Sun Oct  7 22:48:51 2001
+@@ -10,4 +10,4 @@
+ 
+ # the trailing slash is to force symlink transversal
+ install-data-local:
+-	# cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
++	cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
+--- ./innreport/Makefile.am.org	Sun Oct  7 22:48:21 2001
++++ ./innreport/Makefile.am	Sun Oct  7 22:48:33 2001
+@@ -15,7 +15,7 @@
+ 
+ # the trailing slash is to force symlink transversal
+ install-data-local:
+-	# cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
++	 cd $(sysconfdir) && chmod 700 . && chown @nntpcacheUID@ . && chgrp @nntpcacheUID@ . && chmod 600 $(sysconf_DATA) && chown @nntpcacheUID@ $(sysconf_DATA) && chgrp @nntpcacheGID@ $(sysconf_DATA)
+ 	-mkdir $(DESTDIR)$(sysconfdir)/http $(DESTDIR)$(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
+-	# chown @nntpcacheUID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
+-	# chgrp @nntpcacheGID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
++	chown @nntpcacheUID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
++	chgrp @nntpcacheGID@ $(sysconfdir)/http $(sysconfdir)/http/innreport $(sysconfdir)/http/innreport/pics
+--- ./unixauth/Makefile.am.org	Sun Oct  7 22:48:59 2001
++++ ./unixauth/Makefile.am	Sun Oct  7 22:49:09 2001
+@@ -9,8 +9,8 @@
+ 	-I../common
+ 
+ install-exec-hook:
+-	# chown root $(libexecdir)/unixauth
+-	# chgrp @nntpcacheGID@ $(libexecdir)/unixauth
+-	# chmod u+s,g+x,o-x $(libexecdir)/unixauth 
++	chown root $(libexecdir)/unixauth
++	chgrp @nntpcacheGID@ $(libexecdir)/unixauth
++	chmod u+s,g+x,o-x $(libexecdir)/unixauth 
+ 
+ include ../mk/rules.mk
