@@ -66,7 +66,7 @@ CPPFLAGS="-I.. %{rpmcflags}"
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/var/cache/nntp \
-	   $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d \
+	   $RPM_BUILD_ROOT/etc/rc.d/init.d \
 	   $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 %{__make} install \
@@ -78,7 +78,7 @@ mv -f $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/nntpcache.access{-dist,}
 mv -f $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/innreport.conf{-dist,}
 mv -f $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/pubring.pgp{-dist,}
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/%{name}
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
 
 mv -f $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/http $RPM_BUILD_ROOT%{_datadir}/%{name}
 
@@ -115,7 +115,7 @@ fi
 %attr(640,root,news) %config %{_sysconfdir}/%{name}/innreport.pl
 %attr(640,root,news) %config %{_sysconfdir}/%{name}/innreport.pm
 %attr(640,root,news) %config(noreplace) %{_sysconfdir}/%{name}/newshound.conf-dist
-%attr(750,root,root) %{_sysconfdir}/rc.d/init.d/%{name}
+%attr(750,root,root) /etc/rc.d/init.d/%{name}
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libexecdir}/*
 %attr(755,root,root) %{_sbindir}/newshound
