@@ -4,8 +4,8 @@
 #
 # chkconfig:	345 91 35
 #
-# description:	nntpcache act as internet news proxy. Tries to satsify client
-#		requests using data available locally, asking news server for
+# description:	nntpcache act as internet news proxy. Tries to satsify client \
+#		requests using data available locally, asking news server for \
 #		the rest. Can significantly reduce network traffic.
 
 
