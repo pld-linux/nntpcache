@@ -2,7 +2,7 @@ Summary:	News caching proxy
 Summary(pl):	Proxy buforuj±cy dostêp do newsów
 Name:		nntpcache
 Version:	2.4.0b5
-Release:	1
+Release:	2
 License:	Free for non-commercial use
 Group:		Daemons
 Source0:	ftp://ftp.nntpcache.org/pub/nntpcache/%{name}-%{version}.tar.gz
