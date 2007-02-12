@@ -1,5 +1,5 @@
 Summary:	News caching proxy
-Summary(pl):	Proxy buforuj±cy dostêp do newsów
+Summary(pl.UTF-8):   Proxy buforujÄ…cy dostÄ™p do newsÃ³w
 Name:		nntpcache
 Version:	3.0.1
 Release:	0.1
@@ -29,17 +29,17 @@ be requested from server. This can save a lot of time, especially, if
 your users use news clients which dont do any caching by themselves
 (such as slrn, which downloads headers every time user enters group).
 
-%description -l pl
-Zainstaluj ten program, je¶li masz wolne po³±czenie z serwerem news
-albo/i wielu u¿ytkowników korzystaj±cych z newsów, a chcesz odci±¿yæ
-³±cze. Ten program przekazuje rz±dzania NNTP do podanego serwera a
-nastêpnie zwraca odpowiedzi do klienta, jednocze¶nie zachowuj±c je
-lokalnie. Tak wiêc je¶li rz±danie mo¿e zostaæ wype³nione, ca³kowicie
-lub czê¶ciowo, korzystaj±c z danych posiadanych lokalnie, zostan± one
-u¿yte, a z serwera bêd± sprowadzone wy³±cznie informacje niedostêpne
-lokalnie. Mo¿e to zaoszczêdziæ wiele czasu, szczególnie je¶li twoi
-u¿ytkownicy u¿ywaj± klientów news, które same nie buforuj± danych (jak
-np. slrn, który ¶ci±ga nag³ówki przy ka¿dym wej¶ciu na grupê).
+%description -l pl.UTF-8
+Zainstaluj ten program, jeÅ›li masz wolne poÅ‚Ä…czenie z serwerem news
+albo/i wielu uÅ¼ytkownikÃ³w korzystajÄ…cych z newsÃ³w, a chcesz odciÄ…Å¼yÄ‡
+Å‚Ä…cze. Ten program przekazuje rzÄ…dzania NNTP do podanego serwera a
+nastÄ™pnie zwraca odpowiedzi do klienta, jednoczeÅ›nie zachowujÄ…c je
+lokalnie. Tak wiÄ™c jeÅ›li rzÄ…danie moÅ¼e zostaÄ‡ wypeÅ‚nione, caÅ‚kowicie
+lub czÄ™Å›ciowo, korzystajÄ…c z danych posiadanych lokalnie, zostanÄ… one
+uÅ¼yte, a z serwera bÄ™dÄ… sprowadzone wyÅ‚Ä…cznie informacje niedostÄ™pne
+lokalnie. MoÅ¼e to zaoszczÄ™dziÄ‡ wiele czasu, szczegÃ³lnie jeÅ›li twoi
+uÅ¼ytkownicy uÅ¼ywajÄ… klientÃ³w news, ktÃ³re same nie buforujÄ… danych (jak
+np. slrn, ktÃ³ry Å›ciÄ…ga nagÅ‚Ã³wki przy kaÅ¼dym wejÅ›ciu na grupÄ™).
 
 %prep
 %setup  -q
