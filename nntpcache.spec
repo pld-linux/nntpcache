@@ -1,5 +1,5 @@
 Summary:	News caching proxy
-Summary(pl.UTF-8):   Proxy buforujący dostęp do newsów
+Summary(pl.UTF-8):	Proxy buforujący dostęp do newsów
 Name:		nntpcache
 Version:	3.0.1
 Release:	0.3
